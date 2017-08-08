@@ -37,15 +37,15 @@
 
 <script>
 export default {
-  data: () => ({
-    meetups: [
-      {imageUrl: 'https://media.timeout.com/images/101705313/image.jpg', id: 'sdfsdfsdfasfasdf', title: 'Meetup in New York'},
-      {imageUrl: 'https://cache-graphicslib.viator.com/graphicslib/thumbs674x446/2050/SITours/paris-in-one-day-sightseeing-tour-in-paris-130592.jpg', id: 'sdfsdfsfsdfsdfsdf', title: 'Meetup in Paris'}
-    ]
-  }),
+  computed: {
+    meetups () {
+      return this.$store.getters.featuredMeetups
+    }
+  },
+
   methods: {
     onLoadMeetup (id) {
-      this.$router.push(`/meetups/{id}`)
+      this.$router.push(`/meetups/${id}`)
     }
   }
 }
