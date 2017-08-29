@@ -13,8 +13,8 @@
             </v-card-media>
           </v-card-media>
           <v-card-text>
-            <div>{{ meetup.date }} - Where it takes place</div>
-            <div>Listen to your favorite artists and albums whenenver and wherever, online and offline.</div>
+            <div>{{ meetup.date | date }} - {{ meetup.location }}</div>
+            <div>{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
