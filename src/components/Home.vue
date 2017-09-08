@@ -55,7 +55,6 @@ export default {
       return this.$store.getters.loading
     }
   },
-
   methods: {
     onLoadMeetup (id) {
       this.$router.push(`/meetups/${id}`)

@@ -6,6 +6,7 @@ import { store } from './store'
 import router from './router'
 import DateFilter from './filter/date'
 import Alert from './components/Shared/Alert'
+import EditMDTDialog from './components/Meetup/Edit/EditMeetupDetailDialog'
 
 firebase.initializeApp(process.env.FIREBASE)
 
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', Alert)
+Vue.component('app-edit-meetup-detail-dialog', EditMDTDialog)
 
 /* eslint-disable no-new */
 new Vue({
