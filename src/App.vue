@@ -12,6 +12,14 @@
           <v-list-tile-content>
             {{ item.title }}
           </v-list-tile-content>
+        </v-list-tile v-if="userIsAuth">
+        <v-list-tile @click="onLogout">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            Logout
+          </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -32,6 +40,13 @@
           <v-icon left dark> {{ item.icon }} </v-icon>
           {{ item.title }}
         </v-btn>
+        <v-btn
+          flat
+          @click="onLogout"
+          v-if="userIsAuth">
+          <v-icon left dark>exit_to_app</v-icon>
+          Logout
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <main>
@@ -41,33 +56,46 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        sideNav: false
+import firebase from 'firebase'
+export default {
+  created () {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('autoSignIn', user)
       }
-    },
-    computed: {
-      menuItems () {
-        let menuItems = [
-          {icon: 'face', title: 'Sign Up', link: '/signup'},
-          {icon: 'lock_open', title: 'Sign In', link: '/signin'}
+    })
+    this.$store.dispatch('loadMeetups')
+  },
+  data () {
+    return {
+      sideNav: false
+    }
+  },
+  computed: {
+    menuItems () {
+      let menuItems = [
+        {icon: 'face', title: 'Sign Up', link: '/signup'},
+        {icon: 'lock_open', title: 'Sign In', link: '/signin'}
+      ]
+      if (this.userIsAuth) {
+        menuItems = [
+          {icon: 'supervisor_account', title: 'View Meetups', link: '/meetups'},
+          {icon: 'room', title: 'Organize Meetup', link: '/meetup/new'},
+          {icon: 'person', title: 'Profile', link: '/profile'}
         ]
-        if (this.userIsAuth) {
-          menuItems = [
-            {icon: 'supervisor_account', title: 'View Meetups', link: '/meetups'},
-            {icon: 'room', title: 'Organize Meetup', link: '/meetup/new'},
-            {icon: 'person', title: 'Profile', link: '/profile'}
-          ]
-        }
-        return menuItems
-      },
-      userIsAuth () {
-        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
-
+      return menuItems
+    },
+    userIsAuth () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    }
+  },
+  methods: {
+    onLogout () {
+      this.$store.dispatch('logout')
     }
   }
+}
 </script>
 
 <style lang="stylus">

@@ -20,8 +20,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App),
-  created () {
-    this.$store.dispatch('loadMeetups')
-  }
+  render: h => h(App)
 })
