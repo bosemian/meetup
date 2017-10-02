@@ -184,7 +184,7 @@ export const store = new Vuex.Store({
           commit('setLoading', false)
           const newUser = {
             id: user.uid,
-            registerMeetups: [],
+            registeredMeetups: [],
             fireKey: {}
           }
           commit('setUser', newUser)
@@ -228,7 +228,7 @@ export const store = new Vuex.Store({
           commit('setLoading', false)
           const newUser = {
             id: user.uid,
-            registerMeetups: [],
+            registeredMeetups: [],
             fireKey: {}
           }
           commit('setUser', newUser)
@@ -246,6 +246,30 @@ export const store = new Vuex.Store({
         fireKey: {}
       })
     },
+    fetchUserData ({ commit, getters }) {
+      commit('setLoading', true)
+      firebase.database().ref(`/users/${getters.user.id}/registrations`).once('value')
+        .then((data) => {
+          const values = data.val()
+          let registeredMeetups = []
+          let swappedPairs = {}
+          for (let key in values) {
+            registeredMeetups.push(values[key])
+            swappedPairs[values[key]] = key
+          }
+          const updateUser = {
+            id: getters.user.id,
+            registeredMeetups: registeredMeetups,
+            fireKey: swappedPairs
+          }
+          commit('setLoading', false)
+          commit('setUser', updateUser)
+        })
+        .catch((err) => {
+          console.log(err)
+          commit('setLoading', false)
+        })
+    },
     logout ({ commit }) {
       firebase.auth().signOut()
       commit('setUser', null)
@@ -255,6 +279,7 @@ export const store = new Vuex.Store({
       commit('clearError')
     }
   },
+
   getters: {
     loadedMeetups (state) {
       return state.loadedMeetups.sort((meetupA, meetupB) => {
