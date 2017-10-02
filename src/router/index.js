@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+// import Home from '@/components/Home'
 import Meetups from '@/components/Meetup/Meetups'
 import Meetup from '@/components/Meetup/Meetup'
 import CreateMeetup from '@/components/Meetup/CreateMeetup'
@@ -8,6 +8,8 @@ import Profile from '@/components/User/Profile'
 import Signup from '@/components/User/Signup'
 import Signin from '@/components/User/Signin'
 import AuthGuard from '../router/auth-guard'
+
+const Home = () => import('@/components/Home')
 
 Vue.use(Router)
 
