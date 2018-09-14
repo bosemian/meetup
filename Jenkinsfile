@@ -1,6 +1,7 @@
 node('master') {
     stage('Initialize') {
-        echo 'Initializing...'
-        sh 'yarn'
+        nodejs(nodeJSInstallationName: 'Node 8.x', configId: null) {
+            sh 'npm config ls'
+        }
     }
 }
