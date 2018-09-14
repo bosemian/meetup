@@ -1,8 +1,8 @@
 node('master') {
     stage('Initialize') {
         echo 'Initializing...'
-        def node = tool name: 'NodeJS 8.11.3', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        env.PATH = "${node}/bin:${env.PATH}"
-        sh 'npm install'
+        withEnv(["PATH+NODE=${tool name: 'node-8.11.3', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'}/bin"]) {
+            sh 'node -v'
+        }
     }
 }
