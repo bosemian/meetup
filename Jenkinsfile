@@ -1,10 +1,13 @@
-node('master') {
-    stage('Checkout'){
-        checkout scm
+pipeline {
+  agent any
+ 
+  tools {nodejs “node”}
+ 
+  stages {
+    stage(‘Example’) {
+      steps {
+        sh ‘npm config ls’
+      }
     }
-
-    stage('Test'){
-       print "Environment will be : ${env.NODE_ENV}"
-       sh 'node -v'
-     }
+  }
 }
