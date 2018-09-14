@@ -1,3 +1,4 @@
 node('master') {
-    echo "Hello"
+    stage 'Install Dependencies'
+    sh(" npm install ")
 }
