@@ -14,8 +14,9 @@ node('master') {
   }
   
   stage('Build Image') {
-      app = docker.build("unicorn")
-      echo app
+      //app = docker.build("unicorn")
+      //echo app
+      sh 'docker -v'
   }
  
 }
