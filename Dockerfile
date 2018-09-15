@@ -1,4 +1,4 @@
-FROM node:8.12 as unicorn
+FROM node:8.12.0-alpine
 WORKDIR /unicorn/src
 COPY ./package.json /unicorn/src/package.json
 RUN npm install
