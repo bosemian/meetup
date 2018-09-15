@@ -4,13 +4,11 @@ node('master') {
       git 'https://github.com/bosemian/meetup.git'
   }
   
-  stage('Initialize') {
+  stage('Install Dependencies') {
     nodejs(nodeJSInstallationName: 'node') {
       sh 'npm install'
+      sh 'npm run build'
     }
   }
-  
-  stage('Build') {
-    sh 'docker build -t .'
-  }
+ 
 }
