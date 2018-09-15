@@ -1,20 +1,16 @@
-pipeline {
-  agent any
+node('master') {
   
-  stages {
-    stage('Initialize') {
-      steps {
-        nodejs(nodeJSInstallationName: 'node') {
-            sh 'npm install'
-        }
+  stage('Initialize') {
+    steps {
+      nodejs(nodeJSInstallationName: 'node') {
+          sh 'npm install'
       }
     }
-    
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/bosemian/meetup.git'
-      }
+  }
+
+  stage('Cloning Git') {
+    steps {
+      git 'https://github.com/bosemian/meetup.git'
     }
-    
-  }  
+  }
 }
