@@ -8,15 +8,15 @@ node('master') {
   
   stage('Install Dependencies') {
     nodejs(nodeJSInstallationName: 'node') {
-      sh 'npm install'
-      sh 'npm run build'
+      sh 'yarn'
+      sh 'yarn build'
     }
   }
   
   stage('Build Image') {
       //app = docker.build("unicorn")
       //echo app
-      sh 'docker -v'
+      sh 'docker build -t .'
   }
  
 }
