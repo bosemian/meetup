@@ -1,7 +1,13 @@
 node('master') {
     stage('Initialize') {
-        withEnv(["PATH+NODE=${tool name: 'node-5.10.1', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'}/bin"]) {
-            sh 'node -v'
-        }
+        checkout scm
+    }
+  
+    stage('Prepare') {
+        git 'https://github.com/bosemian/meetup.git'
+    }
+  
+    stage('Build') {
+        sh 'docker build -t .' 
     }
 }
