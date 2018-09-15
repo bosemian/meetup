@@ -1,13 +1,11 @@
 pipeline {
   agent any
  
-  tools {nodejs “node”}
- 
-  stages {
-    stage(‘Example’) {
+  stages {    
+    stage('Cloning Git') {
       steps {
-        sh ‘npm -v’
+        git 'https://github.com/bosemian/meetup.git'
       }
     }
-  }
+  }   
 }
