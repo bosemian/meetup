@@ -1,5 +1,15 @@
 pipeline {
   agent any
+  
+  stages {
+    stage('Initialize') {
+      steps {
+        nodejs(nodeJSInstallationName: 'node') {
+            sh 'npm install'
+        }
+      }
+    }
+  }
  
   stages {    
     stage('Cloning Git') {
