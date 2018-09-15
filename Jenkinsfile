@@ -6,12 +6,12 @@ node('master') {
       git 'https://github.com/bosemian/meetup.git'
   }
   
-  stage('Install Dependencies') {
-    nodejs(nodeJSInstallationName: 'node') {
-      sh 'yarn'
-      sh 'yarn build'
-    }
-  }
+  //stage('Install Dependencies') {
+    //nodejs(nodeJSInstallationName: 'node') {
+      //sh 'yarn'
+      //sh 'yarn build'
+    //}
+  //}
   
   stage('Build Image') {
       sh 'docker -v'
