@@ -1,12 +1,16 @@
 node('master') {
   
+  stage('Cloning Git') {
+      git 'https://github.com/bosemian/meetup.git'
+  }
+  
   stage('Initialize') {
     nodejs(nodeJSInstallationName: 'node') {
       sh 'npm install'
     }
   }
-
-  stage('Cloning Git') {
-      git 'https://github.com/bosemian/meetup.git'
+  
+  stage('Build') {
+    sh 'docker build -t .'
   }
 }
