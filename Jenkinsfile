@@ -1,14 +1,19 @@
 node('master') {
   
-  stage('Cloning Git') {
-      git 'https://github.com/bosemian/meetup.git'
+  stage('Initialize') {
+      echo 'Initializing...'
+      def node = tool name: 'Node-8.12', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+      env.PATH = "${node}/bin:${env.PATH}"
   }
-  
-  stage('Install Dependencies') {
-    nodejs(nodeJSInstallationName: 'node') {
-      sh 'npm install'
-      sh 'npm run build'
-    }
+
+  stage('Checkout') {
+      echo 'Getting source code...'
+      checkout scm
+  }
+
+  stage('Build') {
+      echo 'Building dependencies...'
+      sh 'npm i'
   }
  
 }
