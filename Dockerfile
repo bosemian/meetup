@@ -1,4 +1,5 @@
 FROM node:8.12.0-alpine
+RUN mkdir -p /unicorn-test
 WORKDIR /unicorn-test
 COPY package*.json ./
 RUN npm install
