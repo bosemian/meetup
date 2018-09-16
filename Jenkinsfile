@@ -21,7 +21,7 @@ node('master') {
   }
   
   stage('Build Image') {
-     sh 'docker build -t .'
+     sh 'docker build -t unicron_test .'
   }
  
 }
