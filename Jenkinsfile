@@ -1,11 +1,11 @@
 node('master') {
   
-  //def dockerHome = tool 'docker'
+  def dockerHome = tool 'docker'
   def nodejs = tool 'node'
   
   def app
   
-  env.PATH = "${nodejs}/bin:${env.PATH}"
+  env.PATH = "${nodejs}/bin:${dockerHome}/bin:${env.PATH}"
   
   stage('Cloning Git') {
       git 'https://github.com/bosemian/meetup.git'
@@ -22,7 +22,7 @@ node('master') {
   
   stage('Build Image') {
      sh 'docker -v'
-     /*app = docker.build('unicorn_test')*/
+     sh 'docker build -t unicorn_test .'
   }
  
 }
