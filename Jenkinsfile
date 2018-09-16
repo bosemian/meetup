@@ -17,8 +17,9 @@ node('master') {
   //}
   
   stage('Build Image') {
-      sh 'docker -v'
-      app = docker.build("unicorn")
+    withCredentials([usernamePassword(credentialsId: 'siwanon', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+    }
+    app = docker.build('unicorn')
   }
  
 }
