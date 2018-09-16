@@ -7,7 +7,7 @@ node('master') {
   def dockerRepo = 'unicorn_test'
   def dockerid_siwanon = 'siwanon'
   def appName = 'unicorn_test'
-  def imageTag = "${dockerid}/${dockerRepo}:${appName}.${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+  def imageTag = "${dockerid}/${dockerRepo}:${appName}.${env.BUILD_NUMBER}"
   
   def app
   
