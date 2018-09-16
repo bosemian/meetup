@@ -1,9 +1,9 @@
 node('master') {
   
-  def docker = tool 'docker'
+  //def docker = tool 'docker'
   def app
   
-  env.PATH = "${docker}/bin:${env.PATH}"
+  //env.PATH = "${docker}/bin:${env.PATH}"
   
   stage('Cloning Git') {
       git 'https://github.com/bosemian/meetup.git'
