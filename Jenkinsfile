@@ -17,7 +17,7 @@ node('master') {
   //}
   
   stage('Build Image') {
-     app = docker build -t .
+     sh 'docker build -t .'
   }
  
 }
