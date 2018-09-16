@@ -21,7 +21,7 @@ node('master') {
   }
   
   stage('Build Image') {
-     sh 'docker -v'
+     sh 'docker build -t .'
   }
  
 }
