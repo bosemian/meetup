@@ -14,10 +14,10 @@ node('master') {
   /*stage('Install Dependencies') {
     sh 'yarn'
     sh 'yarn build'
-    /*nodejs(nodeJSInstallationName: 'node') {
+    nodejs(nodeJSInstallationName: 'node') {
       sh 'yarn'
       sh 'yarn build'
-    }*/
+    }
   }*/
   
   stage('Build Image') {
