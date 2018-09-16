@@ -1,4 +1,4 @@
-FROM node:8.12.0-alpine as node
+FROM node:8.12.0-alpine
 RUN mkdir -p /unicorn-test
 WORKDIR /unicorn-test
 COPY package*.json ./
@@ -7,5 +7,5 @@ COPY . .
 RUN npm run build
 
 FROM nginx:1.13.6
-COPY --from=node /usr/share/nginx/html
+COPY --from=0 /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
