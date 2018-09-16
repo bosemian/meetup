@@ -14,7 +14,7 @@ const Signin = () => import('@/components/User/Signin')
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  //mode: 'history',
   routes: [
     { path: '/', name: 'Home', component: Home },
     { path: '/meetups/', name: 'Meetups', component: Meetups },
