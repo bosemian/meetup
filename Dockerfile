@@ -1,10 +1,10 @@
 FROM node:8.12.0-alpine
-WORKDIR /unicorn_test/src
-COPY ./package.json /unicorn_test/src/package.json
+WORKDIR /unicorn-test
+COPY package*.json ./
 RUN npm install
-COPY . /unicorn_test/src
+COPY . .
 RUN npm run build
 
 FROM nginx:1.13.6
-WORKDIR /usr/share/nginx/html
+COPY /unicorn-test/dist /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
