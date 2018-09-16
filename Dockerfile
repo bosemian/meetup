@@ -4,8 +4,8 @@ COPY ./package.json /unicorn_test/src/package.json
 RUN npm install
 COPY . /unicorn_test/src
 RUN npm run build
+COPY /unicorn_test/src /unicorn/src/dist .
 
 FROM nginx:1.13.6
 WORKDIR /usr/share/nginx/html
-COPY /unicorn_test/src /unicorn/src/dist .
 CMD ["nginx", "-g", "daemon off;"]
