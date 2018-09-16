@@ -11,17 +11,17 @@ node('master') {
       git 'https://github.com/bosemian/meetup.git'
   }
   
-  stage('Install Dependencies') {
+  /*stage('Install Dependencies') {
     sh 'yarn'
     sh 'yarn build'
     /*nodejs(nodeJSInstallationName: 'node') {
       sh 'yarn'
       sh 'yarn build'
     }*/
-  }
+  }*/
   
   stage('Build Image') {
-     sh 'docker build -t unicron_test .'
+     app = docker.build('unicorn_test')
   }
  
 }
