@@ -27,7 +27,7 @@ node('master') {
   }
   
   stage('Build Image') {
-    app = docker.build('${imageTag}')
+    app = docker.build("${imageTag}")
   }
   
   stage('Push image to registry')
