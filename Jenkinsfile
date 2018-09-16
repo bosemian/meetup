@@ -1,9 +1,9 @@
 node('master') {
   
-  def dockerHome = tool 'docker'
+  def docker = tool 'docker'
   def app
   
-  env.PATH = "${dockerHome}/bin:${env.PATH}"
+  env.PATH = "${docker}/bin:${env.PATH}"
   
   stage('Cloning Git') {
       git 'https://github.com/bosemian/meetup.git'
@@ -17,9 +17,9 @@ node('master') {
   //}
   
   stage('Build Image') {
-    withCredentials([usernamePassword(credentialsId: 'siwanon', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+    docker.withRegistry('https://hub.docker.com/u/siwanon/', 'siwanon'){
+      app = docker.build('unicorn')
     }
-    app = docker.build('unicorn')
   }
  
 }
