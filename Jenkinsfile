@@ -22,7 +22,7 @@ node('master') {
   
   stage('Build Image') {
      sh 'docker -v'
-     app = docker.build('unicorn_test')
+     /*app = docker.build('unicorn_test')*/
   }
  
 }
