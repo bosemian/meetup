@@ -17,9 +17,7 @@ node('master') {
   //}
   
   stage('Build Image') {
-    docker.withRegistry('https://hub.docker.com/u/siwanon/', 'siwanon'){
-      app = docker.build('unicorn')
-    }
+     app = docker.build('unicorn')
   }
  
 }
