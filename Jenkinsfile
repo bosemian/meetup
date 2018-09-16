@@ -1,14 +1,20 @@
 node('master') {
   
-  def dockerHome = tool 'docker'
+  //def dockerHome = tool 'docker'
   def nodejs = tool 'node'
+  
+  def dockerid = 'siwanon'
+  def dockerRepo = 'unicorn_test'
+  def dockerid_siwanon = 'siwanon'
+  def appName = 'unicorn_test'
+  def imageTag = "${dockerid}/${dockerRepo}:${appName}.${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   
   def app
   
-  env.PATH = "${nodejs}/bin:${dockerHome}/bin:${env.PATH}"
+  env.PATH = "${nodejs}/bin:${env.PATH}"
   
   stage('Cloning Git') {
-      git 'https://github.com/bosemian/meetup.git'
+      checkout scm
   }
   
   stage('Install Dependencies') {
@@ -21,8 +27,12 @@ node('master') {
   }
   
   stage('Build Image') {
-     sh 'docker -v'
-     sh 'docker build -t unicorn_test .'
+    app = docker.build('${imageTag}')
   }
+  
+  stage('Push image to registry')
+    docker.withRegistry('', "${dockerid_siwanon}") {
+      app.push()
+    }
  
 }
