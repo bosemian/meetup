@@ -13,18 +13,18 @@ node('master') {
   
   env.PATH = "${nodejs}/bin:${env.PATH}"
   
-  stage('Cloning Git') {
+  /*stage('Cloning Git') {
       checkout scm
-  }
+  }*/
   
-  stage('Install Dependencies') {
+  /*stage('Install Dependencies') {
     sh 'yarn'
     sh 'yarn build'
-    /*nodejs(nodeJSInstallationName: 'node') {
+    nodejs(nodeJSInstallationName: 'node') {
       sh 'yarn'
       sh 'yarn build'
-    }*/
-  }
+    }
+  }*/
   
   stage('Deploy.....') {
     sh("kubectl --namespace=default apply -f deployment.yaml")
