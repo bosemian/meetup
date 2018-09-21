@@ -26,13 +26,8 @@ node('master') {
     }*/
   }
   
-  stage('Build Image') {
-    app = docker.build("${imageTag}")
+  stage('Deploy.....') {
+    sh("kubectl --namespace=default apply -f deployment.yaml")
   }
-  
-  stage('Push image to registry')
-    docker.withRegistry('', "${dockerid_siwanon}") {
-      app.push()
-    }
  
 }
