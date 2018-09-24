@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: siwanon/unicorn_test.52
+        image: siwanon/unicorn_test:unicorn_test.52
         imagePullPolicy: Always
         ports:
         - name: frontend
