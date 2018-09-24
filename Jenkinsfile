@@ -1,7 +1,7 @@
-node('master') {
+node {
   
   //def dockerHome = tool 'docker'
-  def nodejs = tool 'node'
+  /*def nodejs = tool 'node'
   
   def dockerid = 'siwanon'
   def dockerRepo = 'unicorn_test'
@@ -9,13 +9,13 @@ node('master') {
   def appName = 'unicorn_test'
   def imageTag = "${dockerid}/${dockerRepo}:${appName}.${env.BUILD_NUMBER}"
   
-  def app
+  def app*/
   
-  env.PATH = "${nodejs}/bin:${env.PATH}"
+  /*env.PATH = "${nodejs}/bin:${env.PATH}"*/
   
-  /*stage('Cloning Git') {
+  stage('Cloning Git') {
       checkout scm
-  }*/
+  }
   
   /*stage('Install Dependencies') {
     sh 'yarn'
